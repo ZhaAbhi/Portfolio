@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Jha - Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <div class="vscode-container">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <div class="window-controls">
+                <span class="control close"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
+            </div>
+            <div class="title">Visual Studio Code - Abhishek Jha Portfolio</div>
+            <div class="menu-bar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Terminal</span>
+                <span>Help</span>
+            </div>
+        </div>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title">
+                        <i class="fas fa-folder-open"></i>
+                        PORTFOLIO
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                
+                <div class="file-explorer">
+                    <div class="folder-section">
+                        <div class="folder-header" onclick="toggleFolder('main')">
+                            <i class="fas fa-chevron-down folder-icon"></i>
+                            <i class="fas fa-folder"></i>
+                            <span>abhishek-portfolio</span>
+                        </div>
+                        <div class="folder-content" id="main-folder">
+                            <div class="file-item active" onclick="openTab('about', 'README.md')">
+                                <i class="fab fa-markdown"></i>
+                                <span>README.md</span>
+                            </div>
+                            <div class="file-item" onclick="openTab('skills', 'skills.json')">
+                                <i class="fas fa-code"></i>
+                                <span>skills.json</span>
+                            </div>
+                            <div class="file-item" onclick="openTab('projects', 'projects.ts')">
+                                <i class="fab fa-js-square"></i>
+                                <span>projects.ts</span>
+                            </div>
+                            <div class="file-item" onclick="openTab('experience', 'experience.py')">
+                                <i class="fab fa-python"></i>
+                                <span>experience.py</span>
+                            </div>
+                            <div class="file-item" onclick="openTab('contact', 'contact.html')">
+                                <i class="fab fa-html5"></i>
+                                <span>contact.html</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Command Palette -->
+                <div class="command-palette-trigger" onclick="openCommandPalette()">
+                    <i class="fas fa-search"></i>
+                    <span>Search files (Ctrl+P)</span>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Tab Bar -->
+                <div class="tab-bar">
+                    <div class="tab active" data-tab="about">
+                        <i class="fab fa-markdown"></i>
+                        <span>README.md</span>
+                        <button class="tab-close" onclick="closeTab('about')">×</button>
+                    </div>
+                </div>
+
+                <!-- Editor Content -->
+                <div class="editor-content">
+                    <!-- About Section -->
+                    <div class="tab-content active" id="about-content">
+                        <div class="code-header">
+                            <div class="breadcrumb">
+                                <span>abhishek-portfolio</span>
+                                <i class="fas fa-chevron-right"></i>
+                                <span>README.md</span>
+                            </div>
+                            <div class="line-count">25 lines</div>
+                        </div>
+                        <div class="code-content">
+                            <div class="line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                            </div>
+                            <div class="code-editor">
+                                <div class="markdown-content">
+                                    <div class="comment"># Abhishek Jha</div>
+                                    <div class="comment">## Full-Stack Developer & Tech Enthusiast</div>
+                                    <br>
+                                    <div class="string">![Status](https://img.shields.io/badge/Status-Available%20for%20Work-brightgreen)</div>
+                                    <div class="string">![Location](https://img.shields.io/badge/Location-India-blue)</div>
+                                    <br>
+                                    <div class="comment">### About Me</div>
+                                    <div class="text">
+                                        Passionate full-stack developer with expertise in modern web technologies.<br>
+                                        I love building scalable applications and solving complex problems through code.<br>
+                                        Currently focused on React, Node.js, and cloud technologies.
+                                    </div>
+                                    <br>
+                                    <div class="comment">### Quick Stats</div>
+                                    <div class="code-block">
+                                        <span class="keyword">const</span> <span class="variable">developer</span> = {<br>
+                                        &nbsp;&nbsp;<span class="property">name</span>: <span class="string">"Abhishek Jha"</span>,<br>
+                                        &nbsp;&nbsp;<span class="property">location</span>: <span class="string">"India"</span>,<br>
+                                        &nbsp;&nbsp;<span class="property">languages</span>: [<span class="string">"JavaScript"</span>, <span class="string">"Python"</span>, <span class="string">"Java"</span>],<br>
+                                        &nbsp;&nbsp;<span class="property">frameworks</span>: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>, <span class="string">"Express"</span>],<br>
+                                        &nbsp;&nbsp;<span class="property">databases</span>: [<span class="string">"MongoDB"</span>, <span class="string">"MySQL"</span>],<br>
+                                        &nbsp;&nbsp;<span class="property">currentlyLearning</span>: <span class="string">"TypeScript & Cloud Architecture"</span><br>
+                                        };
+                                    </div>
+                                    <br>
+                                    <div class="comment">### Let's Connect!</div>
+                                    <div class="text">
+                                        📧 <a href="mailto:jhabhishek.developer@gmail.com" class="link">jhabhishek.developer@gmail.com</a><br>
+                                        💼 <a href="https://www.linkedin.com/in/abhishekjha2023/" class="link">LinkedIn Profile</a><br>
+                                        🐙 <a href="https://github.com/ZhaAbhi" class="link">GitHub Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="tab-content" id="skills-content">
+                        <div class="code-header">
+                            <div class="breadcrumb">
+                                <span>abhishek-portfolio</span>
+                                <i class="fas fa-chevron-right"></i>
+                                <span>skills.json</span>
+                            </div>
+                            <div class="line-count">45 lines</div>
+                        </div>
+                        <div class="code-content">
+                            <div class="line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span>
+                            </div>
+                            <div class="code-editor">
+                                <div class="json-content">
+                                    {<br>
+                                    &nbsp;&nbsp;<span class="property">"frontend"</span>: {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"languages"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"JavaScript"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"TypeScript"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"HTML5"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"CSS3"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"frameworks"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"React.js"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Next.js"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Vue.js"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"styling"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Tailwind CSS"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Styled Components"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"SASS/SCSS"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                                    &nbsp;&nbsp;},<br>
+                                    &nbsp;&nbsp;<span class="property">"backend"</span>: {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"languages"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Node.js"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Python"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Java"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"frameworks"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Express.js"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Django"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Spring Boot"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                                    &nbsp;&nbsp;},<br>
+                                    &nbsp;&nbsp;<span class="property">"database"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"MongoDB"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"MySQL"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"PostgreSQL"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Redis"</span><br>
+                                    &nbsp;&nbsp;],<br>
+                                    &nbsp;&nbsp;<span class="property">"tools"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Git"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Docker"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"AWS"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"VS Code"</span><br>
+                                    &nbsp;&nbsp;],<br>
+                                    &nbsp;&nbsp;<span class="property">"currentlyLearning"</span>: [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Kubernetes"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"GraphQL"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Microservices"</span><br>
+                                    &nbsp;&nbsp;]<br>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Section -->
+                    <div class="tab-content" id="projects-content">
+                        <div class="code-header">
+                            <div class="breadcrumb">
+                                <span>abhishek-portfolio</span>
+                                <i class="fas fa-chevron-right"></i>
+                                <span>projects.ts</span>
+                            </div>
+                            <div class="line-count">85 lines</div>
+                        </div>
+                        <div class="code-content">
+                            <div class="line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span><span>46</span><span>47</span><span>48</span><span>49</span><span>50</span>
+                            </div>
+                            <div class="code-editor">
+                                <div class="typescript-content">
+                                    <span class="comment">// My Featured Projects</span><br>
+                                    <br>
+                                    <span class="keyword">interface</span> <span class="type">Project</span> {<br>
+                                    &nbsp;&nbsp;<span class="property">id</span>: <span class="type">number</span>;<br>
+                                    &nbsp;&nbsp;<span class="property">title</span>: <span class="type">string</span>;<br>
+                                    &nbsp;&nbsp;<span class="property">description</span>: <span class="type">string</span>;<br>
+                                    &nbsp;&nbsp;<span class="property">technologies</span>: <span class="type">string[]</span>;<br>
+                                    &nbsp;&nbsp;<span class="property">github</span>: <span class="type">string</span>;<br>
+                                    &nbsp;&nbsp;<span class="property">demo</span>?: <span class="type">string</span>;<br>
+                                    &nbsp;&nbsp;<span class="property">status</span>: <span class="string">'completed'</span> | <span class="string">'in-progress'</span> | <span class="string">'planned'</span>;<br>
+                                    }<br>
+                                    <br>
+                                    <span class="keyword">const</span> <span class="variable">projects</span>: <span class="type">Project[]</span> = [<br>
+                                    &nbsp;&nbsp;{<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">id</span>: <span class="number">1</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">title</span>: <span class="string">"E-Commerce Platform"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">description</span>: <span class="string">"Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, shopping cart, payment integration, and admin dashboard."</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">technologies</span>: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>, <span class="string">"MongoDB"</span>, <span class="string">"Stripe"</span>],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">github</span>: <span class="string">"https://github.com/ZhaAbhi/ecommerce-platform"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">demo</span>: <span class="string">"https://demo-ecommerce.example.com"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">status</span>: <span class="string">"completed"</span><br>
+                                    &nbsp;&nbsp;},<br>
+                                    &nbsp;&nbsp;{<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">id</span>: <span class="number">2</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">title</span>: <span class="string">"Task Management App"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">description</span>: <span class="string">"Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features."</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">technologies</span>: [<span class="string">"Next.js"</span>, <span class="string">"TypeScript"</span>, <span class="string">"Socket.io"</span>, <span class="string">"PostgreSQL"</span>],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">github</span>: <span class="string">"https://github.com/ZhaAbhi/task-manager"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">demo</span>: <span class="string">"https://task-manager.example.com"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">status</span>: <span class="string">"completed"</span><br>
+                                    &nbsp;&nbsp;},<br>
+                                    &nbsp;&nbsp;{<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">id</span>: <span class="number">3</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">title</span>: <span class="string">"Weather Dashboard"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">description</span>: <span class="string">"Beautiful weather dashboard with location-based forecasts, interactive maps, and weather analytics."</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">technologies</span>: [<span class="string">"Vue.js"</span>, <span class="string">"Express.js"</span>, <span class="string">"Weather API"</span>, <span class="string">"Chart.js"</span>],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">github</span>: <span class="string">"https://github.com/ZhaAbhi/weather-dashboard"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">demo</span>: <span class="string">"https://weather-dash.example.com"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">status</span>: <span class="string">"in-progress"</span><br>
+                                    &nbsp;&nbsp;}<br>
+                                    ];<br>
+                                    <br>
+                                    <span class="comment">// Export projects for use in portfolio</span><br>
+                                    <span class="keyword">export</span> <span class="keyword">default</span> <span class="variable">projects</span>;<br>
+                                    <br>
+                                    <span class="comment">// Function to get project by status</span><br>
+                                    <span class="keyword">export</span> <span class="keyword">const</span> <span class="function">getProjectsByStatus</span> = (<span class="parameter">status</span>: <span class="type">string</span>) => {<br>
+                                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="variable">projects</span>.<span class="function">filter</span>(<span class="parameter">project</span> => <span class="parameter">project</span>.<span class="property">status</span> === <span class="parameter">status</span>);<br>
+                                    };
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Section -->
+                    <div class="tab-content" id="experience-content">
+                        <div class="code-header">
+                            <div class="breadcrumb">
+                                <span>abhishek-portfolio</span>
+                                <i class="fas fa-chevron-right"></i>
+                                <span>experience.py</span>
+                            </div>
+                            <div class="line-count">65 lines</div>
+                        </div>
+                        <div class="code-content">
+                            <div class="line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span>
+                            </div>
+                            <div class="code-editor">
+                                <div class="python-content">
+                                    <span class="comment"># My Professional Journey</span><br>
+                                    <br>
+                                    <span class="keyword">from</span> <span class="module">datetime</span> <span class="keyword">import</span> <span class="function">datetime</span><br>
+                                    <span class="keyword">from</span> <span class="module">typing</span> <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Dict</span><br>
+                                    <br>
+                                    <span class="keyword">class</span> <span class="class">Experience</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">__init__</span>(<span class="parameter">self</span>, <span class="parameter">company</span>: <span class="type">str</span>, <span class="parameter">position</span>: <span class="type">str</span>, <span class="parameter">duration</span>: <span class="type">str</span>, <span class="parameter">description</span>: <span class="type">List[str]</span>):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">company</span> = <span class="parameter">company</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">position</span> = <span class="parameter">position</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">duration</span> = <span class="parameter">duration</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">description</span> = <span class="parameter">description</span><br>
+                                    <br>
+                                    <span class="comment"># My work experience</span><br>
+                                    <span class="variable">experiences</span> = [<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Experience</span>(<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">company</span>=<span class="string">"Tech Solutions Inc."</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">position</span>=<span class="string">"Full-Stack Developer"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">duration</span>=<span class="string">"2022 - Present"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">description</span>=[<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Developed and maintained web applications using React and Node.js"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Implemented RESTful APIs and database optimization techniques"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Collaborated with cross-functional teams in Agile environment"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Reduced application load time by 40% through code optimization"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;),<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Experience</span>(<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">company</span>=<span class="string">"StartupXYZ"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">position</span>=<span class="string">"Frontend Developer"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">duration</span>=<span class="string">"2021 - 2022"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">description</span>=[<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Built responsive web applications using React and TypeScript"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Implemented user authentication and state management"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Worked closely with UI/UX designers to create pixel-perfect interfaces"</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                                    ]<br>
+                                    <br>
+                                    <span class="comment"># Education</span><br>
+                                    <span class="variable">education</span> = {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"degree"</span>: <span class="string">"Bachelor of Technology in Computer Science"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"university"</span>: <span class="string">"Tech University"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"year"</span>: <span class="string">"2021"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"cgpa"</span>: <span class="string">"8.5/10"</span><br>
+                                    }<br>
+                                    <br>
+                                    <span class="comment"># Print experience summary</span><br>
+                                    <span class="keyword">def</span> <span class="function">print_experience_summary</span>():<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">f"Total Experience: {len(experiences)} positions"</span>)<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> <span class="variable">exp</span> <span class="keyword">in</span> <span class="variable">experiences</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">f"{exp.position} at {exp.company} ({exp.duration})"</span>)<br>
+                                    <br>
+                                    <span class="keyword">if</span> <span class="variable">__name__</span> == <span class="string">"__main__"</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print_experience_summary</span>()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div class="tab-content" id="contact-content">
+                        <div class="code-header">
+                            <div class="breadcrumb">
+                                <span>abhishek-portfolio</span>
+                                <i class="fas fa-chevron-right"></i>
+                                <span>contact.html</span>
+                            </div>
+                            <div class="line-count">35 lines</div>
+                        </div>
+                        <div class="code-content">
+                            <div class="line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span>
+                            </div>
+                            <div class="code-editor">
+                                <div class="html-content">
+                                    <span class="comment">&lt;!-- Contact Form --&gt;</span><br>
+                                    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="string">"terminal-contact"</span><span class="tag">&gt;</span><br>
+                                    &nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="string">"terminal-header"</span><span class="tag">&gt;</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;span</span> <span class="attribute">class</span>=<span class="string">"terminal-title"</span><span class="tag">&gt;</span>abhishek@portfolio:~$ contact<span class="tag">&lt;/span&gt;</span><br>
+                                    &nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+                                    <br>
+                                    &nbsp;&nbsp;<div class="terminal-content">
+                                        <div class="terminal-line">
+                                            <span class="prompt">$</span> Let's collaborate! Send me a message:
+                                        </div>
+                                        <br>
+                                        <form class="terminal-form" id="contactForm">
+                                            <div class="form-group">
+                                                <div class="terminal-line">
+                                                    <span class="prompt">$</span> <span class="command">name</span> <span class="flag">--required</span>
+                                                </div>
+                                                <input type="text" name="name" placeholder="Enter your name..." required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="terminal-line">
+                                                    <span class="prompt">$</span> <span class="command">email</span> <span class="flag">--required</span>
+                                                </div>
+                                                <input type="email" name="email" placeholder="your.email@example.com" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <div class="terminal-line">
+                                                    <span class="prompt">$</span> <span class="command">message</span> <span class="flag">--multiline</span>
+                                                </div>
+                                                <textarea name="message" placeholder="Your message here..." rows="5" required></textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <button type="submit" class="terminal-button">
+                                                    <span class="prompt">$</span> <span class="command">send</span> <span class="flag">--now</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        
+                                        <div class="contact-links">
+                                            <div class="terminal-line">
+                                                <span class="prompt">$</span> <span class="command">connect</span> <span class="flag">--social</span>
+                                            </div>
+                                            <div class="social-links">
+                                                <a href="mailto:jhabhishek.developer@gmail.com" class="social-link">
+                                                    <i class="fas fa-envelope"></i> Email
+                                                </a>
+                                                <a href="https://www.linkedin.com/in/abhishekjha2023/" class="social-link" target="_blank">
+                                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                                </a>
+                                                <a href="https://github.com/ZhaAbhi" class="social-link" target="_blank">
+                                                    <i class="fab fa-github"></i> GitHub
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="tag">&lt;/div&gt;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-item">
+                    <i class="fas fa-code-branch"></i>
+                    main
+                </span>
+                <span class="status-item">
+                    <i class="fas fa-sync-alt"></i>
+                    0 ↓ 0 ↑
+                </span>
+                <span class="status-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    0 
+                    <i class="fas fa-times-circle"></i>
+                    0
+                </span>
+            </div>
+            <div class="status-right">
+                <span class="status-item">
+                    <i class="fas fa-wifi"></i>
+                    Online
+                </span>
+                <span class="status-item">
+                    <i class="fas fa-user"></i>
+                    Available for hire
+                </span>
+                <span class="status-item">UTF-8</span>
+                <span class="status-item">JavaScript</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Command Palette -->
+    <div class="command-palette" id="commandPalette">
+        <div class="command-palette-header">
+            <input type="text" id="commandInput" placeholder="Type a command...">
+        </div>
+        <div class="command-palette-results" id="commandResults">
+            <div class="command-item" onclick="openTab('about', 'README.md')">
+                <i class="fab fa-markdown"></i>
+                <span>Open README.md</span>
+            </div>
+            <div class="command-item" onclick="openTab('skills', 'skills.json')">
+                <i class="fas fa-code"></i>
+                <span>Open skills.json</span>
+            </div>
+            <div class="command-item" onclick="openTab('projects', 'projects.ts')">
+                <i class="fab fa-js-square"></i>
+                <span>Open projects.ts</span>
+            </div>
+            <div class="command-item" onclick="openTab('experience', 'experience.py')">
+                <i class="fab fa-python"></i>
+                <span>Open experience.py</span>
+            </div>
+            <div class="command-item" onclick="openTab('contact', 'contact.html')">
+                <i class="fab fa-html5"></i>
+                <span>Open contact.html</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
