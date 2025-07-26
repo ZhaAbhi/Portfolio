@@ -3,506 +3,813 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Jha - Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Abhishek Jha - Software Engineer</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        /* Custom CSS for enhanced newspaper aesthetic */
+        .newspaper-bg {
+            background: linear-gradient(45deg, #f8f8f8 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f8f8f8 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f8f8f8 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f8f8f8 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        
+        .paper-texture {
+            position: relative;
+            background: #fefefe;
+        }
+        
+        .paper-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0),
+                radial-gradient(circle at 3px 3px, rgba(0,0,0,0.04) 1px, transparent 0);
+            background-size: 15px 15px, 25px 25px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        
+        .vintage-border {
+            border: 3px solid #2d2d2d;
+            border-image: url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m0,0l100,0l0,100l-100,0l0,-100z' stroke='%232d2d2d' stroke-width='3' fill='none' stroke-dasharray='5,3,2,3'/%3e%3c/svg%3e") 3;
+            position: relative;
+        }
+        
+        .vintage-border::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            top: -4px;
+            right: -4px;
+            opacity: 0.7;
+        }
+        
+        .headline-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+        }
+        
+        .body-font {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .typewriter-font {
+            font-family: 'Special Elite', monospace;
+        }
+        
+        .ink-splatter {
+            position: relative;
+        }
+        
+        .ink-splatter::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #2d2d2d 30%, transparent 30%);
+            top: -6px;
+            right: -6px;
+            opacity: 0.6;
+            border-radius: 50%;
+        }
+        
+        .newspaper-column {
+            column-count: 1;
+            column-gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .newspaper-column {
+                column-count: 2;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .newspaper-column {
+                column-count: 3;
+            }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        .typewriter-effect {
+            overflow: hidden;
+            border-right: 3px solid #2d2d2d;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #2d2d2d; }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2d2d2d 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #2d2d2d;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        .profile-image {
+            background: radial-gradient(circle at 30% 30%, #f0f0f0, #d0d0d0);
+            background-image: 
+                radial-gradient(circle at 20% 20%, #2d2d2d 2px, transparent 2px),
+                radial-gradient(circle at 80% 80%, #2d2d2d 1px, transparent 1px);
+            background-size: 20px 20px, 15px 15px;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+            border: 2px solid #2d2d2d;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(45,45,45,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+        
+        .project-card {
+            background: #fefefe;
+            border: 3px solid #2d2d2d;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #2d2d2d, #666, #2d2d2d);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .timeline-line {
+            position: relative;
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #2d2d2d;
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            background: #2d2d2d;
+            border: 4px solid #fefefe;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+            border: 3px dashed #2d2d2d;
+            position: relative;
+        }
+        
+        .contact-card::after {
+            content: '✉';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #2d2d2d;
+            opacity: 0.3;
+        }
+    </style>
 </head>
-<body class="dark-theme">
-    <div class="vscode-container">
-        <!-- Title Bar -->
-        <div class="title-bar">
-            <div class="window-controls">
-                <span class="control close"></span>
-                <span class="control minimize"></span>
-                <span class="control maximize"></span>
-            </div>
-            <div class="title">Visual Studio Code - Abhishek Jha Portfolio</div>
-            <div class="menu-bar">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Terminal</span>
-                <span>Help</span>
-            </div>
-        </div>
+<body>
+    <div id="root"></div>
 
-        <!-- Main Container -->
-        <div class="main-container">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <div class="sidebar-title">
-                        <i class="fas fa-folder-open"></i>
-                        PORTFOLIO
-                    </div>
-                    <button class="theme-toggle" id="themeToggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const Portfolio = () => {
+            const [activeSection, setActiveSection] = useState('home');
+            const [isLoaded, setIsLoaded] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [scrollY, setScrollY] = useState(0);
+
+            useEffect(() => {
+                setIsLoaded(true);
                 
-                <div class="file-explorer">
-                    <div class="folder-section">
-                        <div class="folder-header" onclick="toggleFolder('main')">
-                            <i class="fas fa-chevron-down folder-icon"></i>
-                            <i class="fas fa-folder"></i>
-                            <span>abhishek-portfolio</span>
-                        </div>
-                        <div class="folder-content" id="main-folder">
-                            <div class="file-item active" onclick="openTab('about', 'README.md')">
-                                <i class="fab fa-markdown"></i>
-                                <span>README.md</span>
-                            </div>
-                            <div class="file-item" onclick="openTab('skills', 'skills.json')">
-                                <i class="fas fa-code"></i>
-                                <span>skills.json</span>
-                            </div>
-                            <div class="file-item" onclick="openTab('projects', 'projects.ts')">
-                                <i class="fab fa-js-square"></i>
-                                <span>projects.ts</span>
-                            </div>
-                            <div class="file-item" onclick="openTab('experience', 'experience.py')">
-                                <i class="fab fa-python"></i>
-                                <span>experience.py</span>
-                            </div>
-                            <div class="file-item" onclick="openTab('contact', 'contact.html')">
-                                <i class="fab fa-html5"></i>
-                                <span>contact.html</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                const handleScroll = () => {
+                    setScrollY(window.scrollY);
+                    
+                    // Update active section based on scroll position
+                    const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
+                    const currentSection = sections.find(section => {
+                        const element = document.getElementById(section);
+                        if (element) {
+                            const rect = element.getBoundingClientRect();
+                            return rect.top <= 100 && rect.bottom >= 100;
+                        }
+                        return false;
+                    });
+                    
+                    if (currentSection) {
+                        setActiveSection(currentSection);
+                    }
+                };
 
-                <!-- Command Palette -->
-                <div class="command-palette-trigger" onclick="openCommandPalette()">
-                    <i class="fas fa-search"></i>
-                    <span>Search files (Ctrl+P)</span>
-                </div>
-            </div>
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
 
-            <!-- Content Area -->
-            <div class="content-area">
-                <!-- Tab Bar -->
-                <div class="tab-bar">
-                    <div class="tab active" data-tab="about">
-                        <i class="fab fa-markdown"></i>
-                        <span>README.md</span>
-                        <button class="tab-close" onclick="closeTab('about')">×</button>
-                    </div>
-                </div>
+            const scrollToSection = (sectionId) => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection(sectionId);
+                    setMobileMenuOpen(false);
+                }
+            };
 
-                <!-- Editor Content -->
-                <div class="editor-content">
-                    <!-- About Section -->
-                    <div class="tab-content active" id="about-content">
-                        <div class="code-header">
-                            <div class="breadcrumb">
-                                <span>abhishek-portfolio</span>
-                                <i class="fas fa-chevron-right"></i>
-                                <span>README.md</span>
-                            </div>
-                            <div class="line-count">25 lines</div>
-                        </div>
-                        <div class="code-content">
-                            <div class="line-numbers">
-                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-                            </div>
-                            <div class="code-editor">
-                                <div class="markdown-content">
-                                    <div class="comment"># Abhishek Jha</div>
-                                    <div class="comment">## Full-Stack Developer & Tech Enthusiast</div>
-                                    <br>
-                                    <div class="string">![Status](https://img.shields.io/badge/Status-Available%20for%20Work-brightgreen)</div>
-                                    <div class="string">![Location](https://img.shields.io/badge/Location-India-blue)</div>
-                                    <br>
-                                    <div class="comment">### About Me</div>
-                                    <div class="text">
-                                        Passionate full-stack developer with expertise in modern web technologies.<br>
-                                        I love building scalable applications and solving complex problems through code.<br>
-                                        Currently focused on React, Node.js, and cloud technologies.
+            const skills = [
+                'JavaScript', 'Python', 'React', 'Node.js', 'MongoDB', 'Express.js',
+                'HTML/CSS', 'Git', 'AWS', 'Docker', 'TypeScript', 'PostgreSQL',
+                'Redux', 'GraphQL', 'REST APIs', 'Microservices'
+            ];
+
+            const projects = [
+                {
+                    title: 'E-Commerce Platform',
+                    description: 'Full-stack e-commerce solution with React frontend, Node.js backend, and MongoDB database. Features include user authentication, payment integration, and admin dashboard.',
+                    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe API'],
+                    link: 'https://tinyurl.com/2w5ba8ad',
+                    featured: true
+                },
+                {
+                    title: 'Task Management System',
+                    description: 'Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
+                    technologies: ['React', 'Socket.io', 'Express.js', 'PostgreSQL'],
+                    link: 'https://tinyurl.com/42wske8r',
+                    featured: true
+                },
+                {
+                    title: 'Weather Analytics Dashboard',
+                    description: 'Interactive weather dashboard with data visualization, historical trends, and location-based forecasts using external APIs.',
+                    technologies: ['JavaScript', 'Chart.js', 'Weather API', 'CSS Grid'],
+                    link: '#',
+                    featured: false
+                },
+                {
+                    title: 'Social Media Analytics',
+                    description: 'Analytics platform for social media metrics tracking, sentiment analysis, and automated reporting with data visualization.',
+                    technologies: ['Python', 'Django', 'D3.js', 'Twitter API'],
+                    link: '#',
+                    featured: false
+                }
+            ];
+
+            const experience = [
+                {
+                    title: 'Senior Software Engineer',
+                    company: 'TechCorp Solutions',
+                    period: '2022 - Present',
+                    description: 'Lead development of scalable web applications, mentor junior developers, and architect cloud-based solutions serving 100K+ users.',
+                    side: 'right'
+                },
+                {
+                    title: 'Full Stack Developer',
+                    company: 'Digital Innovations Inc.',
+                    period: '2020 - 2022',
+                    description: 'Developed responsive web applications using React and Node.js, implemented REST APIs, and improved application performance by 40%.',
+                    side: 'left'
+                },
+                {
+                    title: 'Junior Web Developer',
+                    company: 'StartupLab',
+                    period: '2019 - 2020',
+                    description: 'Built interactive user interfaces, collaborated with design teams, and maintained legacy codebases while learning modern development practices.',
+                    side: 'right'
+                }
+            ];
+
+            return (
+                <div className="min-h-screen bg-gray-50 newspaper-bg">
+                    {/* Enhanced Navigation */}
+                    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b-4 border-gray-800 z-50 paper-texture">
+                        <div className="max-w-7xl mx-auto px-4 py-4">
+                            <div className="flex justify-between items-center">
+                                <h1 className="text-2xl md:text-3xl font-black headline-font gradient-text">
+                                    ABHISHEK JHA
+                                </h1>
+                                
+                                {/* Desktop Menu */}
+                                <div className="hidden lg:flex space-x-6">
+                                    {['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'].map((section) => (
+                                        <button
+                                            key={section}
+                                            onClick={() => scrollToSection(section)}
+                                            className={`px-4 py-2 text-sm uppercase tracking-wider body-font font-semibold border-2 border-gray-800 hover-lift ${
+                                                activeSection === section 
+                                                    ? 'bg-gray-800 text-white' 
+                                                    : 'bg-white text-gray-800 hover:bg-gray-100'
+                                            }`}
+                                        >
+                                            {section}
+                                        </button>
+                                    ))}
+                                </div>
+                                
+                                {/* Mobile Menu Button */}
+                                <div className="lg:hidden">
+                                    <div 
+                                        className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
+                                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                    >
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
                                     </div>
-                                    <br>
-                                    <div class="comment">### Quick Stats</div>
-                                    <div class="code-block">
-                                        <span class="keyword">const</span> <span class="variable">developer</span> = {<br>
-                                        &nbsp;&nbsp;<span class="property">name</span>: <span class="string">"Abhishek Jha"</span>,<br>
-                                        &nbsp;&nbsp;<span class="property">location</span>: <span class="string">"India"</span>,<br>
-                                        &nbsp;&nbsp;<span class="property">languages</span>: [<span class="string">"JavaScript"</span>, <span class="string">"Python"</span>, <span class="string">"Java"</span>],<br>
-                                        &nbsp;&nbsp;<span class="property">frameworks</span>: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>, <span class="string">"Express"</span>],<br>
-                                        &nbsp;&nbsp;<span class="property">databases</span>: [<span class="string">"MongoDB"</span>, <span class="string">"MySQL"</span>],<br>
-                                        &nbsp;&nbsp;<span class="property">currentlyLearning</span>: <span class="string">"TypeScript & Cloud Architecture"</span><br>
-                                        };
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Mobile Menu */}
+                        <div className={`mobile-menu lg:hidden fixed top-0 left-0 w-full h-full bg-white z-40 ${mobileMenuOpen ? 'open' : ''}`}>
+                            <div className="flex flex-col items-center justify-center h-full space-y-8">
+                                {['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'].map((section) => (
+                                    <button
+                                        key={section}
+                                        onClick={() => scrollToSection(section)}
+                                        className="text-2xl uppercase tracking-wider body-font font-semibold text-gray-800 hover:text-gray-600"
+                                    >
+                                        {section}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Enhanced Home Section */}
+                    <section id="home" className="pt-24 pb-16 bg-white paper-texture min-h-screen flex items-center">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                                <div className="text-center lg:text-left">
+                                    <div className="mb-8">
+                                        <h1 className={`text-4xl md:text-6xl lg:text-7xl font-black headline-font mb-6 gradient-text ${isLoaded ? 'typewriter-effect' : ''}`}>
+                                            ABHISHEK JHA
+                                        </h1>
+                                        <p className="text-xl md:text-2xl body-font italic text-gray-600 mb-8">
+                                            "Engineering Code with Timeless Precision"
+                                        </p>
+                                        <div className="w-24 h-1 bg-gray-800 mx-auto lg:mx-0 mb-8"></div>
                                     </div>
-                                    <br>
-                                    <div class="comment">### Let's Connect!</div>
-                                    <div class="text">
-                                        📧 <a href="mailto:jhabhishek.developer@gmail.com" class="link">jhabhishek.developer@gmail.com</a><br>
-                                        💼 <a href="https://www.linkedin.com/in/abhishekjha2023/" class="link">LinkedIn Profile</a><br>
-                                        🐙 <a href="https://github.com/ZhaAbhi" class="link">GitHub Profile</a>
+                                    
+                                    <div className="space-y-4 mb-8">
+                                        <p className="text-lg body-font text-gray-700 leading-relaxed">
+                                            Passionate software engineer with 4+ years of experience crafting elegant solutions 
+                                            to complex problems. Specializing in full-stack development with modern technologies.
+                                        </p>
+                                    </div>
+                                    
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                        <button 
+                                            onClick={() => scrollToSection('projects')}
+                                            className="px-8 py-4 bg-gray-800 text-white body-font font-semibold hover-lift"
+                                        >
+                                            VIEW MY WORK
+                                        </button>
+                                        <button 
+                                            onClick={() => scrollToSection('contact')}
+                                            className="px-8 py-4 border-2 border-gray-800 text-gray-800 body-font font-semibold hover-lift hover:bg-gray-800 hover:text-white"
+                                        >
+                                            GET IN TOUCH
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Skills Section -->
-                    <div class="tab-content" id="skills-content">
-                        <div class="code-header">
-                            <div class="breadcrumb">
-                                <span>abhishek-portfolio</span>
-                                <i class="fas fa-chevron-right"></i>
-                                <span>skills.json</span>
-                            </div>
-                            <div class="line-count">45 lines</div>
-                        </div>
-                        <div class="code-content">
-                            <div class="line-numbers">
-                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span>
-                            </div>
-                            <div class="code-editor">
-                                <div class="json-content">
-                                    {<br>
-                                    &nbsp;&nbsp;<span class="property">"frontend"</span>: {<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"languages"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"JavaScript"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"TypeScript"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"HTML5"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"CSS3"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"frameworks"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"React.js"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Next.js"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Vue.js"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"styling"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Tailwind CSS"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Styled Components"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"SASS/SCSS"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;]<br>
-                                    &nbsp;&nbsp;},<br>
-                                    &nbsp;&nbsp;<span class="property">"backend"</span>: {<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"languages"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Node.js"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Python"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Java"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;],<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">"frameworks"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Express.js"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Django"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Spring Boot"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;]<br>
-                                    &nbsp;&nbsp;},<br>
-                                    &nbsp;&nbsp;<span class="property">"database"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"MongoDB"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"MySQL"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"PostgreSQL"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Redis"</span><br>
-                                    &nbsp;&nbsp;],<br>
-                                    &nbsp;&nbsp;<span class="property">"tools"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Git"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Docker"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"AWS"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"VS Code"</span><br>
-                                    &nbsp;&nbsp;],<br>
-                                    &nbsp;&nbsp;<span class="property">"currentlyLearning"</span>: [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Kubernetes"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"GraphQL"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Microservices"</span><br>
-                                    &nbsp;&nbsp;]<br>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projects Section -->
-                    <div class="tab-content" id="projects-content">
-                        <div class="code-header">
-                            <div class="breadcrumb">
-                                <span>abhishek-portfolio</span>
-                                <i class="fas fa-chevron-right"></i>
-                                <span>projects.ts</span>
-                            </div>
-                            <div class="line-count">85 lines</div>
-                        </div>
-                        <div class="code-content">
-                            <div class="line-numbers">
-                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span><span>46</span><span>47</span><span>48</span><span>49</span><span>50</span>
-                            </div>
-                            <div class="code-editor">
-                                <div class="typescript-content">
-                                    <span class="comment">// My Featured Projects</span><br>
-                                    <br>
-                                    <span class="keyword">interface</span> <span class="type">Project</span> {<br>
-                                    &nbsp;&nbsp;<span class="property">id</span>: <span class="type">number</span>;<br>
-                                    &nbsp;&nbsp;<span class="property">title</span>: <span class="type">string</span>;<br>
-                                    &nbsp;&nbsp;<span class="property">description</span>: <span class="type">string</span>;<br>
-                                    &nbsp;&nbsp;<span class="property">technologies</span>: <span class="type">string[]</span>;<br>
-                                    &nbsp;&nbsp;<span class="property">github</span>: <span class="type">string</span>;<br>
-                                    &nbsp;&nbsp;<span class="property">demo</span>?: <span class="type">string</span>;<br>
-                                    &nbsp;&nbsp;<span class="property">status</span>: <span class="string">'completed'</span> | <span class="string">'in-progress'</span> | <span class="string">'planned'</span>;<br>
-                                    }<br>
-                                    <br>
-                                    <span class="keyword">const</span> <span class="variable">projects</span>: <span class="type">Project[]</span> = [<br>
-                                    &nbsp;&nbsp;{<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">id</span>: <span class="number">1</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">title</span>: <span class="string">"E-Commerce Platform"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">description</span>: <span class="string">"Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, shopping cart, payment integration, and admin dashboard."</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">technologies</span>: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>, <span class="string">"MongoDB"</span>, <span class="string">"Stripe"</span>],<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">github</span>: <span class="string">"https://github.com/ZhaAbhi/ecommerce-platform"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">demo</span>: <span class="string">"https://demo-ecommerce.example.com"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">status</span>: <span class="string">"completed"</span><br>
-                                    &nbsp;&nbsp;},<br>
-                                    &nbsp;&nbsp;{<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">id</span>: <span class="number">2</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">title</span>: <span class="string">"Task Management App"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">description</span>: <span class="string">"Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features."</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">technologies</span>: [<span class="string">"Next.js"</span>, <span class="string">"TypeScript"</span>, <span class="string">"Socket.io"</span>, <span class="string">"PostgreSQL"</span>],<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">github</span>: <span class="string">"https://github.com/ZhaAbhi/task-manager"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">demo</span>: <span class="string">"https://task-manager.example.com"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">status</span>: <span class="string">"completed"</span><br>
-                                    &nbsp;&nbsp;},<br>
-                                    &nbsp;&nbsp;{<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">id</span>: <span class="number">3</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">title</span>: <span class="string">"Weather Dashboard"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">description</span>: <span class="string">"Beautiful weather dashboard with location-based forecasts, interactive maps, and weather analytics."</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">technologies</span>: [<span class="string">"Vue.js"</span>, <span class="string">"Express.js"</span>, <span class="string">"Weather API"</span>, <span class="string">"Chart.js"</span>],<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">github</span>: <span class="string">"https://github.com/ZhaAbhi/weather-dashboard"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">demo</span>: <span class="string">"https://weather-dash.example.com"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="property">status</span>: <span class="string">"in-progress"</span><br>
-                                    &nbsp;&nbsp;}<br>
-                                    ];<br>
-                                    <br>
-                                    <span class="comment">// Export projects for use in portfolio</span><br>
-                                    <span class="keyword">export</span> <span class="keyword">default</span> <span class="variable">projects</span>;<br>
-                                    <br>
-                                    <span class="comment">// Function to get project by status</span><br>
-                                    <span class="keyword">export</span> <span class="keyword">const</span> <span class="function">getProjectsByStatus</span> = (<span class="parameter">status</span>: <span class="type">string</span>) => {<br>
-                                    &nbsp;&nbsp;<span class="keyword">return</span> <span class="variable">projects</span>.<span class="function">filter</span>(<span class="parameter">project</span> => <span class="parameter">project</span>.<span class="property">status</span> === <span class="parameter">status</span>);<br>
-                                    };
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Experience Section -->
-                    <div class="tab-content" id="experience-content">
-                        <div class="code-header">
-                            <div class="breadcrumb">
-                                <span>abhishek-portfolio</span>
-                                <i class="fas fa-chevron-right"></i>
-                                <span>experience.py</span>
-                            </div>
-                            <div class="line-count">65 lines</div>
-                        </div>
-                        <div class="code-content">
-                            <div class="line-numbers">
-                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span><span>43</span><span>44</span><span>45</span>
-                            </div>
-                            <div class="code-editor">
-                                <div class="python-content">
-                                    <span class="comment"># My Professional Journey</span><br>
-                                    <br>
-                                    <span class="keyword">from</span> <span class="module">datetime</span> <span class="keyword">import</span> <span class="function">datetime</span><br>
-                                    <span class="keyword">from</span> <span class="module">typing</span> <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Dict</span><br>
-                                    <br>
-                                    <span class="keyword">class</span> <span class="class">Experience</span>:<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">__init__</span>(<span class="parameter">self</span>, <span class="parameter">company</span>: <span class="type">str</span>, <span class="parameter">position</span>: <span class="type">str</span>, <span class="parameter">duration</span>: <span class="type">str</span>, <span class="parameter">description</span>: <span class="type">List[str]</span>):<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">company</span> = <span class="parameter">company</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">position</span> = <span class="parameter">position</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">duration</span> = <span class="parameter">duration</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">self</span>.<span class="property">description</span> = <span class="parameter">description</span><br>
-                                    <br>
-                                    <span class="comment"># My work experience</span><br>
-                                    <span class="variable">experiences</span> = [<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Experience</span>(<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">company</span>=<span class="string">"Tech Solutions Inc."</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">position</span>=<span class="string">"Full-Stack Developer"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">duration</span>=<span class="string">"2022 - Present"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">description</span>=[<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Developed and maintained web applications using React and Node.js"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Implemented RESTful APIs and database optimization techniques"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Collaborated with cross-functional teams in Agile environment"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Reduced application load time by 40% through code optimization"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;),<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Experience</span>(<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">company</span>=<span class="string">"StartupXYZ"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">position</span>=<span class="string">"Frontend Developer"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">duration</span>=<span class="string">"2021 - 2022"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="parameter">description</span>=[<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Built responsive web applications using React and TypeScript"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Implemented user authentication and state management"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Worked closely with UI/UX designers to create pixel-perfect interfaces"</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;)<br>
-                                    ]<br>
-                                    <br>
-                                    <span class="comment"># Education</span><br>
-                                    <span class="variable">education</span> = {<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"degree"</span>: <span class="string">"Bachelor of Technology in Computer Science"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"university"</span>: <span class="string">"Tech University"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"year"</span>: <span class="string">"2021"</span>,<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"cgpa"</span>: <span class="string">"8.5/10"</span><br>
-                                    }<br>
-                                    <br>
-                                    <span class="comment"># Print experience summary</span><br>
-                                    <span class="keyword">def</span> <span class="function">print_experience_summary</span>():<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">f"Total Experience: {len(experiences)} positions"</span>)<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> <span class="variable">exp</span> <span class="keyword">in</span> <span class="variable">experiences</span>:<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">f"{exp.position} at {exp.company} ({exp.duration})"</span>)<br>
-                                    <br>
-                                    <span class="keyword">if</span> <span class="variable">__name__</span> == <span class="string">"__main__"</span>:<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print_experience_summary</span>()
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Section -->
-                    <div class="tab-content" id="contact-content">
-                        <div class="code-header">
-                            <div class="breadcrumb">
-                                <span>abhishek-portfolio</span>
-                                <i class="fas fa-chevron-right"></i>
-                                <span>contact.html</span>
-                            </div>
-                            <div class="line-count">35 lines</div>
-                        </div>
-                        <div class="code-content">
-                            <div class="line-numbers">
-                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>32</span><span>33</span><span>34</span><span>35</span>
-                            </div>
-                            <div class="code-editor">
-                                <div class="html-content">
-                                    <span class="comment">&lt;!-- Contact Form --&gt;</span><br>
-                                    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="string">"terminal-contact"</span><span class="tag">&gt;</span><br>
-                                    &nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="string">"terminal-header"</span><span class="tag">&gt;</span><br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;span</span> <span class="attribute">class</span>=<span class="string">"terminal-title"</span><span class="tag">&gt;</span>abhishek@portfolio:~$ contact<span class="tag">&lt;/span&gt;</span><br>
-                                    &nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
-                                    <br>
-                                    &nbsp;&nbsp;<div class="terminal-content">
-                                        <div class="terminal-line">
-                                            <span class="prompt">$</span> Let's collaborate! Send me a message:
+                                
+                                <div className="flex justify-center lg:justify-end">
+                                    <div className="relative">
+                                        <div className="w-80 h-80 profile-image vintage-border floating"></div>
+                                        <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-gray-800 vintage-border flex items-center justify-center">
+                                            <span className="text-white text-2xl">👨‍💻</span>
                                         </div>
-                                        <br>
-                                        <form class="terminal-form" id="contactForm">
-                                            <div class="form-group">
-                                                <div class="terminal-line">
-                                                    <span class="prompt">$</span> <span class="command">name</span> <span class="flag">--required</span>
-                                                </div>
-                                                <input type="text" name="name" placeholder="Enter your name..." required>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <div class="terminal-line">
-                                                    <span class="prompt">$</span> <span class="command">email</span> <span class="flag">--required</span>
-                                                </div>
-                                                <input type="email" name="email" placeholder="your.email@example.com" required>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <div class="terminal-line">
-                                                    <span class="prompt">$</span> <span class="command">message</span> <span class="flag">--multiline</span>
-                                                </div>
-                                                <textarea name="message" placeholder="Your message here..." rows="5" required></textarea>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <button type="submit" class="terminal-button">
-                                                    <span class="prompt">$</span> <span class="command">send</span> <span class="flag">--now</span>
-                                                </button>
-                                            </div>
-                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Enhanced About Section */}
+                    <section id="about" className="py-20 bg-gray-100 paper-texture">
+                        <div className="max-w-6xl mx-auto px-4">
+                            <h2 className="text-4xl md:text-5xl font-black headline-font text-center mb-16 gradient-text">
+                                ABOUT THE ENGINEER
+                            </h2>
+                            
+                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                                <div className="fade-in-up stagger-1">
+                                    <div className="bg-white p-8 vintage-border hover-lift">
+                                        <h3 className="text-2xl headline-font font-bold mb-6 ink-splatter">My Story</h3>
+                                        <p className="text-lg body-font leading-relaxed mb-6 text-gray-700">
+                                            Passionate software engineer with a keen eye for detail and a love for crafting elegant solutions 
+                                            to complex problems. With over 4 years of experience in full-stack development, I specialize in
+                                            building scalable web applications that deliver exceptional user experiences.
+                                        </p>
+                                        <p className="text-lg body-font leading-relaxed text-gray-700">
+                                            My approach combines traditional engineering principles with modern technologies, ensuring 
+                                            robust, maintainable code that stands the test of time.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-6 fade-in-up stagger-2">
+                                    <div className="bg-white p-6 vintage-border hover-lift">
+                                        <h4 className="text-xl headline-font font-bold mb-4">🎯 Focus Areas</h4>
+                                        <ul className="space-y-2 body-font text-gray-700">
+                                            <li>• Full-Stack Web Development</li>
+                                            <li>• Cloud Architecture & DevOps</li>
+                                            <li>• API Design & Microservices</li>
+                                            <li>• Performance Optimization</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-white p-6 vintage-border hover-lift">
+                                        <h4 className="text-xl headline-font font-bold mb-4">🏆 Achievements</h4>
+                                        <ul className="space-y-2 body-font text-gray-700">
+                                            <li>• 100K+ users served</li>
+                                            <li>• 40% performance improvement</li>
+                                            <li>• Team leadership & mentoring</li>
+                                            <li>• Open source contributions</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Enhanced Skills Section */}
+                    <section id="skills" className="py-20 bg-white paper-texture">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <h2 className="text-4xl md:text-5xl font-black headline-font text-center mb-16 gradient-text">
+                                TECHNICAL EXPERTISE
+                            </h2>
+                            
+                            <div className="newspaper-column gap-6">
+                                {skills.map((skill, index) => (
+                                    <div key={index} className={`mb-6 break-inside-avoid fade-in-up stagger-${(index % 4) + 1}`}>
+                                        <div className="skill-tag p-4 hover-lift ink-splatter">
+                                            <span className="text-lg body-font font-semibold text-gray-800">{skill}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Enhanced Projects Section */}
+                    <section id="projects" className="py-20 bg-gray-100 paper-texture">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <h2 className="text-4xl md:text-5xl font-black headline-font text-center mb-16 gradient-text">
+                                FEATURED PROJECTS
+                            </h2>
+                            
+                            <div className="grid lg:grid-cols-2 gap-8">
+                                {projects.map((project, index) => (
+                                    <div key={index} className={`project-card p-8 hover-lift fade-in-up stagger-${(index % 4) + 1} ${project.featured ? 'lg:col-span-1' : ''}`}>
+                                        <div className="flex items-start justify-between mb-6">
+                                            <h3 className="text-2xl headline-font font-bold ink-splatter text-gray-800">
+                                                {project.title}
+                                            </h3>
+                                            {project.featured && (
+                                                <span className="bg-gray-800 text-white px-3 py-1 text-sm typewriter-font">
+                                                    FEATURED
+                                                </span>
+                                            )}
+                                        </div>
                                         
-                                        <div class="contact-links">
-                                            <div class="terminal-line">
-                                                <span class="prompt">$</span> <span class="command">connect</span> <span class="flag">--social</span>
-                                            </div>
-                                            <div class="social-links">
-                                                <a href="mailto:jhabhishek.developer@gmail.com" class="social-link">
-                                                    <i class="fas fa-envelope"></i> Email
-                                                </a>
-                                                <a href="https://www.linkedin.com/in/abhishekjha2023/" class="social-link" target="_blank">
-                                                    <i class="fab fa-linkedin"></i> LinkedIn
-                                                </a>
-                                                <a href="https://github.com/ZhaAbhi" class="social-link" target="_blank">
-                                                    <i class="fab fa-github"></i> GitHub
-                                                </a>
+                                        <p className="body-font text-gray-700 mb-6 leading-relaxed text-lg">
+                                            {project.description}
+                                        </p>
+                                        
+                                        <div className="mb-6">
+                                            <h4 className="font-bold body-font mb-3 text-gray-800">Technologies Used:</h4>
+                                            <div className="flex flex-wrap gap-2">
+                                                {project.technologies.map((tech, techIndex) => (
+                                                    <span key={techIndex} className="px-3 py-1 bg-gray-200 text-sm body-font border border-gray-800">
+                                                        {tech}
+                                                    </span>
+                                                ))}
                                             </div>
                                         </div>
+                                        
+                                        <a 
+                                            href={project.link} 
+                                            className="inline-block px-6 py-3 bg-gray-800 text-white body-font font-bold hover-lift"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            VIEW PROJECT →
+                                        </a>
                                     </div>
-                                    <span class="tag">&lt;/div&gt;</span>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Enhanced Experience Section */}
+                    <section id="experience" className="py-20 bg-white paper-texture">
+                        <div className="max-w-6xl mx-auto px-4">
+                            <h2 className="text-4xl md:text-5xl font-black headline-font text-center mb-16 gradient-text">
+                                PROFESSIONAL TIMELINE
+                            </h2>
+                            
+                            <div className="relative timeline-line">
+                                {experience.map((job, index) => (
+                                    <div key={index} className={`relative mb-12 ${job.side === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'} lg:w-1/2 fade-in-up stagger-${index + 1}`}>
+                                        <div className="timeline-dot" style={{top: '2rem'}}></div>
+                                        <div className="bg-gray-50 p-8 vintage-border hover-lift ink-splatter ml-12 lg:ml-0">
+                                            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
+                                                <div>
+                                                    <h3 className="text-2xl headline-font font-bold text-gray-800">{job.title}</h3>
+                                                    <h4 className="text-xl body-font italic text-gray-600">{job.company}</h4>
+                                                </div>
+                                                <span className="bg-gray-800 text-white px-4 py-2 body-font font-bold mt-2 lg:mt-0">
+                                                    {job.period}
+                                                </span>
+                                            </div>
+                                            <p className="body-font text-gray-700 leading-relaxed text-lg">{job.description}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Enhanced Education Section */}
+                    <section id="education" className="py-20 bg-gray-100 paper-texture">
+                        <div className="max-w-4xl mx-auto px-4">
+                            <h2 className="text-4xl md:text-5xl font-black headline-font text-center mb-16 gradient-text">
+                                EDUCATIONAL BACKGROUND
+                            </h2>
+                            
+                            <div className="bg-white p-12 vintage-border hover-lift fade-in-up">
+                                <div className="text-center">
+                                    <div className="w-20 h-20 bg-gray-800 vintage-border mx-auto mb-8 flex items-center justify-center">
+                                        <span className="text-white text-3xl">🎓</span>
+                                    </div>
+                                    <h3 className="text-3xl headline-font font-bold mb-4 text-gray-800">
+                                        Bachelor of Science in Computer Science
+                                    </h3>
+                                    <h4 className="text-2xl body-font italic mb-6 text-gray-600">University of Technology</h4>
+                                    <span className="bg-gray-800 text-white px-6 py-3 body-font font-bold text-lg">2015 - 2019</span>
+                                    <p className="body-font text-gray-700 mt-8 leading-relaxed text-lg max-w-2xl mx-auto">
+                                        Graduated with honors, focusing on software engineering principles, algorithms, 
+                                        and data structures. Completed senior capstone project on distributed systems 
+                                        and cloud computing architectures.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
+
+                    {/* Enhanced Contact Section */}
+                    <section id="contact" className="py-20 bg-white paper-texture">
+                        <div className="max-w-6xl mx-auto px-4">
+                            <h2 className="text-4xl md:text-5xl font-black headline-font text-center mb-16 gradient-text">
+                                LET'S CONNECT
+                            </h2>
+                            
+                            <div className="grid lg:grid-cols-2 gap-12">
+                                <div className="fade-in-up stagger-1">
+                                    <div className="contact-card p-8 hover-lift">
+                                        <h3 className="text-3xl headline-font font-bold mb-6 ink-splatter text-gray-800">
+                                            Ready to Collaborate?
+                                        </h3>
+                                        <p className="body-font text-lg text-gray-700 mb-8 leading-relaxed">
+                                            I'm always interested in challenging projects and opportunities to create 
+                                            something amazing. Let's discuss how we can work together.
+                                        </p>
+                                        
+                                        <div className="space-y-4">
+                                            <div className="flex items-center space-x-4">
+                                                <div className="w-12 h-12 bg-gray-800 flex items-center justify-center">
+                                                    <span className="text-white text-xl">📧</span>
+                                                </div>
+                                                <div>
+                                                    <p className="body-font font-semibold text-gray-800">Email</p>
+                                                    <p className="body-font text-gray-600">Available 24/7</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex items-center space-x-4">
+                                                <div className="w-12 h-12 bg-gray-800 flex items-center justify-center">
+                                                    <span className="text-white text-xl">💼</span>
+                                                </div>
+                                                <div>
+                                                    <p className="body-font font-semibold text-gray-800">Professional</p>
+                                                    <p className="body-font text-gray-600">Open to opportunities</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-6 fade-in-up stagger-2">
+                                    <a 
+                                        href="mailto:jhabhishek.developer@gmail.com" 
+                                        className="flex items-center p-6 bg-white vintage-border hover-lift group"
+                                    >
+                                        <span className="body-font font-bold text-gray-800 mr-4">EMAIL:</span>
+                                        <span className="body-font text-gray-600 group-hover:text-gray-800">
+                                            jhabhishek.developer@gmail.com
+                                        </span>
+                                    </a>
+                                    
+                                    <a 
+                                        href="https://www.linkedin.com/in/abhishekjha2023/" 
+                                        className="flex items-center p-6 bg-white vintage-border hover-lift group"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <span className="body-font font-bold text-gray-800 mr-4">LINKEDIN:</span>
+                                        <span className="body-font text-gray-600 group-hover:text-gray-800">
+                                            abhishekjha2023
+                                        </span>
+                                    </a>
+                                    
+                                    <a 
+                                        href="https://github.com/ZhaAbhi" 
+                                        className="flex items-center p-6 bg-white vintage-border hover-lift group"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <span className="body-font font-bold text-gray-800 mr-4">GITHUB:</span>
+                                        <span className="body-font text-gray-600 group-hover:text-gray-800">
+                                            ZhaAbhi
+                                        </span>
+                                    </a>
+                                    
+                                    <button className="w-full p-6 bg-gray-800 text-white body-font font-bold hover-lift">
+                                        DOWNLOAD RESUME
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Enhanced Footer */}
+                    <footer className="bg-gray-800 text-white py-12 paper-texture">
+                        <div className="max-w-4xl mx-auto px-4 text-center">
+                            <div className="mb-8">
+                                <h3 className="text-2xl headline-font font-bold mb-4">ABHISHEK JHA</h3>
+                                <p className="body-font text-gray-300">Software Engineer & Problem Solver</p>
+                            </div>
+                            
+                            <div className="border-t border-gray-600 pt-8">
+                                <p className="body-font text-gray-400">© 2024 Abhishek Jha. All rights reserved.</p>
+                                <p className="typewriter-font text-sm mt-2 text-gray-500">
+                                    Crafted with vintage precision and modern technology
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
-            </div>
-        </div>
+            );
+        };
 
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <div class="status-left">
-                <span class="status-item">
-                    <i class="fas fa-code-branch"></i>
-                    main
-                </span>
-                <span class="status-item">
-                    <i class="fas fa-sync-alt"></i>
-                    0 ↓ 0 ↑
-                </span>
-                <span class="status-item">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    0 
-                    <i class="fas fa-times-circle"></i>
-                    0
-                </span>
-            </div>
-            <div class="status-right">
-                <span class="status-item">
-                    <i class="fas fa-wifi"></i>
-                    Online
-                </span>
-                <span class="status-item">
-                    <i class="fas fa-user"></i>
-                    Available for hire
-                </span>
-                <span class="status-item">UTF-8</span>
-                <span class="status-item">JavaScript</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Command Palette -->
-    <div class="command-palette" id="commandPalette">
-        <div class="command-palette-header">
-            <input type="text" id="commandInput" placeholder="Type a command...">
-        </div>
-        <div class="command-palette-results" id="commandResults">
-            <div class="command-item" onclick="openTab('about', 'README.md')">
-                <i class="fab fa-markdown"></i>
-                <span>Open README.md</span>
-            </div>
-            <div class="command-item" onclick="openTab('skills', 'skills.json')">
-                <i class="fas fa-code"></i>
-                <span>Open skills.json</span>
-            </div>
-            <div class="command-item" onclick="openTab('projects', 'projects.ts')">
-                <i class="fab fa-js-square"></i>
-                <span>Open projects.ts</span>
-            </div>
-            <div class="command-item" onclick="openTab('experience', 'experience.py')">
-                <i class="fab fa-python"></i>
-                <span>Open experience.py</span>
-            </div>
-            <div class="command-item" onclick="openTab('contact', 'contact.html')">
-                <i class="fab fa-html5"></i>
-                <span>Open contact.html</span>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="script.js"></script>
+        ReactDOM.render(<Portfolio />, document.getElementById('root'));
+    </script>
 </body>
 </html>
